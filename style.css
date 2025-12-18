@@ -3,6 +3,11 @@
     padding: 0px;
     font-family: 'Press Start 2P', cursive;
 }
+@keyframes float {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
 body {
     background-image: url("main.jpg");
     background-size: cover;      /* 🔥 makes image cover the div */
@@ -38,6 +43,7 @@ body {
     justify-content: center;
     align-items: center;
     gap: 12px;
+    animation: float 1.5s ease-in-out infinite;
 }
 .introBack p {
     text-align: center;
@@ -92,5 +98,90 @@ button:focus{
     background-position: center;
 }
 
+.end {
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 0, 0, 0.6);
+    box-shadow:
+        inset 0 0 12px 24px rgba(255, 0, 0, 0.6);
+}
+
+.pipe {
+    position: absolute;
+    z-index: 2;
+    box-sizing: border-box;
+
+    /* main pipe body */
+    background: linear-gradient(to right, 
+        #4a8c35 0%, 
+        #6fbf4a 45%, 
+        #6fbf4a 55%, 
+        #3b6f2a 100%);
+    border: 3px solid #2a4f1e;
+    box-shadow:
+        inset 3px 0 0 rgba(255,255,255,0.25),
+        inset -3px 0 0 rgba(0,0,0,0.3),
+        4px 0 8px rgba(0,0,0,0.35);
+}
+
+/* ========== TOP PIPE ========== */
+/* cap is OUTSIDE the gap, facing down */
+.topPipe::after {
+    content: '';
+    position: absolute;
+
+    /* extend sideways a bit */
+    left: -6px;
+    width: calc(100% + 12px);
+
+    /* small vertical lip */
+    height: 18px;
+
+    /* sit BELOW the body, outside the opening */
+    bottom: -18px;
+
+    /* darker edge at bottom to show underside */
+    background:
+        linear-gradient(to bottom,
+            #6fbf4a 0%,
+            #5da842 40%,
+            #2a4f1e 100%);
+    border: 3px solid #2a4f1e;
+    border-top: none;     /* open towards pipe body */
+    box-shadow:
+        0 3px 6px rgba(0,0,0,0.4),
+        inset 0 3px 0 rgba(255,255,255,0.25);
+
+    pointer-events: none;
+    z-index: 3;
+}
+
+/* ========== BOTTOM PIPE ========== */
+/* cap is OUTSIDE the gap, facing up */
+.bottomPipe::before {
+    content: '';
+    position: absolute;
+
+    left: -6px;
+    width: calc(100% + 12px);
+    height: 18px;
+
+    /* sit ABOVE the body, outside the opening */
+    top: -18px;
+
+    /* brighter highlight at top to show top edge */
+    background:
+        linear-gradient(to top,
+            #6fbf4a 0%,
+            #5da842 40%,
+            #2a4f1e 100%);
+    border: 3px solid #2a4f1e;
+    border-bottom: none;  /* open towards pipe body */
+    box-shadow:
+        0 -3px 6px rgba(0,0,0,0.4),
+        inset 0 -3px 0 rgba(255,255,255,0.25);
+
+    pointer-events: none;
+    z-index: 3;
+}
 
 
