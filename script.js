@@ -34,13 +34,13 @@ let gameOver = false;
 let gameState = "wait";
 
 // Gravity pulls the bird down each frame
-let gravity = 0.2;
+let gravity = 0.4;
 
 
 let pipes = [];             // Array to hold all pipe objects
 const pipeWidth = 32;       // Width of each pipe
 const pipeGap = 150;        // Vertical space for the bird to pass
-const pipeSpawnInterval = 1700; // Time (ms) between new pipes
+const pipeSpawnInterval = 3000; // Time (ms) between new pipes
 let pipeSpawner;            // Variable to store setInterval reference
 
 
@@ -89,6 +89,10 @@ function gameLoop(timestamp) {
         return;
     }
 
+    if (!lastFrameTime) {          // ADD THIS BLOCK
+        lastFrameTime = timestamp;
+    }
+
 
     if(!lastPipeTime) {
         lastPipeTime = timestamp;
@@ -105,7 +109,7 @@ function gameLoop(timestamp) {
     lastFrameTime = timestamp; // update for next frame
 
     // Bird falls down gradually due to gravity
-    birdV += gravity*delta*5;
+    birdV += gravity*delta*10;
     birdY += birdV;
 
     // Ceiling collision: prevent bird from going above the screen
@@ -129,7 +133,7 @@ function gameLoop(timestamp) {
 
 // Add a global keydown listener for spacebar
 window.addEventListener("keydown",(e)=>{
-    if(e.key !== " "){  // Only respond to spacebar
+    if(e.key !== " " ){  // Only respond to spacebar
         return;
     }
     if (gameState !== "playing"){ // Only allow jump when game is active
@@ -137,12 +141,22 @@ window.addEventListener("keydown",(e)=>{
     }
 
     e.preventDefault(); // Prevent default scrolling behavior
-    birdV = -1;        // Move bird up by 40 pixels (jump)
+    birdV = -1.5;        // Move bird up by 40 pixels (jump)
     flap.play();
     flap.currentTime = 0;
     updateBird();       // Reflect new position visually
 })
+window.addEventListener("click",(e)=>{
+    if (gameState !== "playing"){ // Only allow jump when game is active
+        return;
+    }
 
+    e.preventDefault(); // Prevent default scrolling behavior
+    birdV = -1.5;        // Move bird up by 40 pixels (jump)
+    flap.play();
+    flap.currentTime = 0;
+    updateBird();       // Reflect new position visually
+})
 
 
 //gameover function
@@ -321,6 +335,8 @@ button.addEventListener("click",()=>{
         clearPipes();
         lastPipeTime = 0;
         score = 0;
+        lastFrameTime = 0;   // reset delta timing
+        birdV = 0;           // reset velocity
 
         gameOver = false;
         gameState="playing";          // Set game as active
@@ -328,4 +344,5 @@ button.addEventListener("click",()=>{
 
     },2000); // End of setTimeout (delay for intro animation)
 });
+
 
