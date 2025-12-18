@@ -1,0 +1,96 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Press Start 2P', cursive;
+}
+body {
+    background-image: url("main.jpg");
+    background-size: cover;      /* 🔥 makes image cover the div */
+    background-position: center; /* crops equally from all sides */
+    background-repeat: repeat;
+    height: 100vh;
+}
+.introBack {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 2s ease;
+    transform: translateY(0);
+    opacity: 1;
+    gap: 48px;
+    position: fixed;
+    inset: 0;
+}
+.hide {
+    opacity: 0;
+    transform: translateY(-300px);
+}
+.show{
+    opacity: 1;
+    transform: translateY(0);
+}
+.heading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+.introBack p {
+    text-align: center;
+}
+.A {
+    font-size: 2rem;
+}
+.B {
+    font-size: 1rem;
+    color: #ffffff;
+}
+button {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 14px;
+  letter-spacing: 2px;
+
+  padding: 14px 32px;
+  background: #6fbf4a; /* softer green */
+  color: hsl(0, 0%, 100%);
+
+  border: 3px solid #3b6f2a;
+  box-shadow: 0 6px 0 #2a4f1e;
+
+  cursor: pointer;
+  outline: none;
+
+  position: relative;
+  top: 24px;
+
+  transition: all 0.12s ease-in-out;
+}
+button:hover{
+    background-color: #67b045;
+}
+button:active {
+    transform: scale(0.96) translateY(4px)
+}
+button:focus{
+    outline: none;
+}
+.main{
+    display: none;
+    position: relative;
+}
+.bird{
+    width: 34px;
+    height: 24px;
+    position: absolute;
+    background-image: url(realbird.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+
+
