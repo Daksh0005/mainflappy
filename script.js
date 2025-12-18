@@ -141,7 +141,7 @@ window.addEventListener("keydown",(e)=>{
     }
 
     e.preventDefault(); // Prevent default scrolling behavior
-    birdV = -1.5;        // Move bird up by 40 pixels (jump)
+    birdV = -2;        // Move bird up by 40 pixels (jump)
     flap.play();
     flap.currentTime = 0;
     updateBird();       // Reflect new position visually
@@ -152,7 +152,7 @@ window.addEventListener("click",(e)=>{
     }
 
     e.preventDefault(); // Prevent default scrolling behavior
-    birdV = -1.5;        // Move bird up by 40 pixels (jump)
+    birdV = -2;        // Move bird up by 40 pixels (jump)
     flap.play();
     flap.currentTime = 0;
     updateBird();       // Reflect new position visually
@@ -344,5 +344,6 @@ button.addEventListener("click",()=>{
 
     },2000); // End of setTimeout (delay for intro animation)
 });
+
 
 
